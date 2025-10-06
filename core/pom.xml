@@ -25,6 +25,7 @@
         -->
         <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
         <builddate>${maven.build.timestamp}</builddate>
+        <argLine/> 
     </properties>
     <licenses>
         <license>
@@ -35,6 +36,12 @@
         </license>
     </licenses>
     <dependencies>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+             <version>1.0.2</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>com.graphhopper</groupId>
             <artifactId>graphhopper-web-api</artifactId>
@@ -164,6 +171,42 @@
                     <failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <!-- aligne sur la dernière série 1.20.x -->
+                <version>1.20.3</version>
+
+                <!-- plugin JUnit 5 pour PIT -->
+                <dependencies>
+                    <dependency>
+                    <groupId>org.pitest</groupId>
+                    <artifactId>pitest-junit5-plugin</artifactId>
+                    <version>1.2.1</version>
+                 </dependency>
+                </dependencies>
+
+                <configuration>
+                    <!-- cible 100% sûr : notre classe et nos tests -->
+                    <targetClasses>
+                        <param>com.graphhopper.util.DistanceCalcEuclidean*</param>
+                    </targetClasses>
+                    <targetTests>
+                         <param>com.graphhopper.util.DistanceCalcEuclidean*Test</param>
+                    </targetTests>
+
+                    <mutators>
+                        <mutator>STRONGER</mutator>
+                    </mutators>
+                        <outputFormats>
+                            <param>HTML</param>
+                            <param>XML</param>
+                        </outputFormats>
+                        <timestampedReports>false</timestampedReports>
+                </configuration>
+                </plugin>
+
+
         </plugins>
 
         <!-- make version available at runtime via version file -->
