@@ -6,20 +6,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Auteurs : Yasmine Ben Youssef, Hazem Ben Amor
- * Cours : IFT3913 – Qualité du logiciel et tests
- *
  * Projet : Tests unitaires pour la classe StopWatch du projet GraphHopper.
- *
- * Objectif :
- *   Ajouter 7 tests unitaires simples pour vérifier le bon fonctionnement du chronomètre.
- *   - 1 test avec Faker
- *   - 1 test avec un oracle numérique (comparaison d’un calcul attendu)
  */
-class StopWatchExtraTest {
+class StopWatchTest {
 
     /**
-     * Test 1 – Vérifie qu’après un start() suivi d’un stop(),
-     * le temps mesuré est bien positif.
+     * Test 1 – Vérifie qu’après un start() suivi d’un stop() le temps mesuré est bien positif.
      */
     @Test
     void testStartAndStopShouldIncreaseTime() throws InterruptedException {
@@ -31,7 +23,6 @@ class StopWatchExtraTest {
 
     /**
      * Test 2 – Vérifie que getSeconds() correspond bien à getNanos() / 1e9.
-     * C’est notre oracle numérique pour tester la cohérence des valeurs.
      */
     @Test
     void testGetSecondsOracleComparison() throws InterruptedException {
@@ -58,7 +49,6 @@ class StopWatchExtraTest {
     /**
      * Test 4 – Vérifie que getTimeString() retourne un texte avec
      * une unité de temps cohérente (ns, µs, ms ou s).
-     * On ne teste pas les minutes/heures, juste que le format reste correct.
      */
     @Test
     void testGetTimeStringCoversAllUnits() throws InterruptedException {
