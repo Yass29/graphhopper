@@ -187,22 +187,16 @@
                 </dependencies>
 
                 <configuration>
-                    <!-- cible 100% sûr : notre classe et nos tests -->
+                    <jvmArgs>
+                        <param>-Xmx4G</param>
+                    </jvmArgs>
+                    <threads>1</threads>
                     <targetClasses>
-                        <param>com.graphhopper.util.DistanceCalcEuclidean*</param>
+                        <param>com.graphhopper.util.*</param>
                     </targetClasses>
                     <targetTests>
-                         <param>com.graphhopper.util.DistanceCalcEuclidean*Test</param>
+                        <param>com.graphhopper.util.*</param>
                     </targetTests>
-
-                    <mutators>
-                        <mutator>STRONGER</mutator>
-                    </mutators>
-                        <outputFormats>
-                            <param>HTML</param>
-                            <param>XML</param>
-                        </outputFormats>
-                        <timestampedReports>false</timestampedReports>
                 </configuration>
                 </plugin>
 
